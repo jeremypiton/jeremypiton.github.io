@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilan BUT SD 1 - Jérémy Piton</title>
+    <title>Bilan - Jérémy Piton</title>
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
@@ -21,12 +21,20 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Bilan de ma première année</h1>
-            <p>Retour sur une année riche en découvertes et en succès.</p>
+            <h1>Mon évolution académique</h1>
+            <p>Découvrez mon parcours, mes apprentissages et ma progression tout au long de mon BUT Science des Données.</p>
         </div>
     </section>
 
-    <div class="bilan-container">
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-btn" data-target="but1">Première Année (BUT 1)</button>
+            <button class="tab-btn active" data-target="but2">Deuxième Année (BUT 2)</button>
+            <button class="tab-btn" data-target="but3">Troisième Année (BUT 3)</button>
+        </div>
+    </div>
+
+    <div id="but1" class="tab-content bilan-container">
         <div class="bilan-section">
             <h2><span class="section-icon">🎯</span>Vue d'ensemble de l'année</h2>
             <p>Ma première année en BUT Science des Données à l'IUT de Poitiers (site de Niort) s'est révélée être une expérience enrichissante et gratifiante. Dès le début de cette formation, j'ai été agréablement surpris par la qualité de l'enseignement et la diversité des matières proposées.</p>
@@ -107,14 +115,32 @@
         </div>
     </div>
 
+    <div id="but2" class="tab-content active bilan-container">
+        <div class="coming-soon">
+            <div class="icon">⏳</div>
+            <h2>En cours de développement</h2>
+            <p>Cette section sera complétée lors de ma deuxième année de BUT, qui se déroule actuellement en alternance. Je partagerai mes expériences professionnelles, les compétences développées et les projets réalisés au cours de cette année riche en apprentissages.</p>
+        </div>
+    </div>
+
+    <div id="but3" class="tab-content bilan-container">
+        <div class="coming-soon">
+            <div class="icon">🚀</div>
+            <h2>Patience, j'y travaille !</h2>
+            <p>Cette section sera complétée lors de ma troisième et dernière année de BUT.<br>Au programme : spécialisation, poursuite de mon alternance, et préparation à la poursuite d'études (Master/École d'ingénieur).</p>
+        </div>
+    </div>
+    
     <footer>
         <p>© 2025 Jérémy Piton - Tous droits réservés</p>
         <p>Portfolio personnel - Étudiant en Science des données</p>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-piton-b1ab8a340/">LinkedIn</a>
-            <a href="https://github.com/butsdjeremypiton">GitHub</a>
+            <a href="https://github.com/jeremypiton">GitHub</a>
             <a href="mailto:jmyptn@gmail.com">Email</a>
         </div>
     </footer>
+
+    <script src="../scripts/scripts.js"></script>
 </body>
 </html>

@@ -4,311 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jérémy Piton - Mes projets</title>
-    <style>
-        /* Reset et base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-        }
-
-        /* Header */
-        header {
-            background-color: #1e40af;
-            color: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: #60a5fa;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #60a5fa;
-        }
-
-        /* Hero section */
-        .hero {
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(30, 64, 175, 0.1) 0%, transparent 70%);
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #1e40af;
-            animation: slideInFromTop 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            color: #4b5563;
-            animation: slideInFromBottom 1s ease-out 0.3s both;
-        }
-
-        @keyframes slideInFromTop {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInFromBottom {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Features grid */
-        .features {
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Feature card */
-        .feature-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        .feature-card p {
-            text-align: justify;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Bouton d'ouverture détails */
-        .open-details-btn {
-            padding: 0.5rem 1rem;
-            background-color: #1e40af;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 1rem;
-            display: inline-block;
-        }
-
-        .open-details-btn:hover {
-            background-color: #3b82f6;
-        }
-
-        /* Overlay pour la modale */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
-
-        .modal-overlay.active {
-            display: block;
-        }
-
-        /* Contenu détails projet - modale */
-        .project-details {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            z-index: 10000;
-            max-width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            width: 700px;
-        }
-
-        .project-details.active {
-            display: block;
-        }
-
-        /* Bouton fermer modale */
-        .close-details-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #f3f4f6;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-details-btn:hover {
-            background: #e5e7eb;
-            color: #1e40af;
-        }
-
-        /* Layout des détails */
-        .project-content {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .project-left,
-        .project-right {
-            flex: 1;
-        }
-
-        .project-left h4,
-        .project-right h4 {
-            color: #1e40af;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .project-right ul {
-            margin-bottom: 1rem;
-            padding-left: 1.2rem;
-        }
-
-        .project-right li {
-            margin-bottom: 0.3rem;
-        }
-
-        .project-right a {
-            color: #1e40af;
-            text-decoration: underline;
-            font-weight: 500;
-        }
-
-        .project-details h3 {
-            color: #1e40af;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        .project-details p {
-            text-align: justify;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .project-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .project-details {
-                width: 95%;
-                max-height: 90vh;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1e3a8a;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        footer p {
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #60a5fa;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
     <!-- Overlay pour les modales -->
@@ -329,10 +25,19 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Mes projets</h1>
-            <p>Découvrez les projets réalisés dans le cadre de ma première année de formation en BUT Science des données.</p>
+            <p>Découvrez les projets académiques et professionnels réalisés tout au long de mon cursus.</p>
         </div>
     </section>
 
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-btn" data-target="projets-but1">Projets BUT 1</button>
+            <button class="tab-btn active" data-target="projets-but2">Projets BUT 2</button>
+            <button class="tab-btn" data-target="projets-but3">Projets BUT 3</button>
+        </div>
+    </div>
+
+    <div id="projets-but1" class="tab-content">
     <section class="features">
         <div class="feature-card">
             <h3>🌍 Présentation en anglais d'un territoire</h3>
@@ -653,7 +358,7 @@
                     <li>Communication et restitution</li>
                 </ul>
                 <h4>Livrables</h4>
-                <a href="#" target="_blank">Projet complet</a>
+                <a href="#">Projet Indisponible</a>
             </div>
         </div>
     </div>
@@ -679,60 +384,35 @@
             </div>
         </div>
     </div>
+    </section>
+    </div>
+
+    <div id="projets-but2" class="tab-content active">
+        <div class="coming-soon">
+            <div class="icon">⏳</div>
+            <h2>En cours de développement</h2>
+            <p>Merci de patienter avant la publication de ces projets.</p>
+        </div>
+    </div>
+
+    <div id="projets-but3" class="tab-content">
+        <div class="coming-soon">
+            <div class="icon">🚀</div>
+            <h2>Projets à venir</h2>
+            <p>Mes projets de troisième année apparaîtront ici. Ils incluront notamment mon projet de fin d'études et des missions d'alternance plus complexes.</p>
+        </div>
+    </div>
 
     <footer>
         <p>© 2025 Jérémy Piton - Tous droits réservés</p>
         <p>Portfolio personnel - Étudiant en Science des données</p>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-piton-b1ab8a340/">LinkedIn</a>
-            <a href="https://github.com/butsdjeremypiton">GitHub</a>
+            <a href="https://github.com/jeremypiton">GitHub</a>
             <a href="mailto:jmyptn@gmail.com">Email</a>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.feature-card');
-            const overlay = document.getElementById('modalOverlay');
-            
-            cards.forEach((card, index) => {
-                const button = card.querySelector('.open-details-btn');
-                const modal = document.getElementById(`modal-${index}`);
-                const closeBtn = modal ? modal.querySelector('.close-details-btn') : null;
-                
-                if (button && modal && closeBtn) {
-                    // Ouvrir la modale
-                    button.addEventListener('click', function() {
-                        modal.classList.add('active');
-                        overlay.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    });
-                    
-                    // Fermer avec le bouton X
-                    closeBtn.addEventListener('click', function() {
-                        modal.classList.remove('active');
-                        overlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                    
-                    // Fermer en cliquant sur l'overlay
-                    overlay.addEventListener('click', function() {
-                        modal.classList.remove('active');
-                        overlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                    
-                    // Fermer avec Escape
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape' && modal.classList.contains('active')) {
-                            modal.classList.remove('active');
-                            overlay.classList.remove('active');
-                            document.body.style.overflow = '';
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="../scripts/scripts.js"></script>
 </body>
 </html>

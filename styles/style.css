@@ -1,3 +1,6 @@
+/* ==========================================================================
+   BASES & VARIABLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +11,12 @@
 body {
     background-color: #f5f7fa;
     color: #333;
+    overflow-x: hidden;
 }
 
+/* ==========================================================================
+   NAVIGATION & FOOTER (Communs)
+   ========================================================================== */
 header {
     background-color: #1e40af;
     color: white;
@@ -26,8 +33,6 @@ nav {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    display: flex;
-    align-items: center;
 }
 
 .logo span {
@@ -46,111 +51,8 @@ nav {
     transition: color 0.3s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-links a.active {
     color: #60a5fa;
-}
-
-.auth-buttons a {
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
-}
-
-.login {
-    color: white;
-    margin-right: 1rem;
-}
-
-.login:hover {
-    color: #60a5fa;
-}
-
-.signup {
-    background-color: #60a5fa;
-    color: white;
-}
-
-.signup:hover {
-    background-color: #3b82f6;
-}
-
-.hero {
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #e0e7ff;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #1e40af;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin-bottom: 2rem;
-    color: #4b5563;
-}
-
-.hero-btn {
-    padding: 0.8rem 1.5rem;
-    background-color: #1e40af;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.hero-btn:hover {
-    background-color: #1c3879;
-}
-
-.features {
-    padding: 4rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.feature-card {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-}
-
-.feature-icon {
-    font-size: 2rem;
-    color: #1e40af;
-    margin-bottom: 1rem;
-}
-
-.feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #1e3a8a;
-}
-
-.feature-card p {
-    color: #4b5563;
-    line-height: 1.6;
 }
 
 footer {
@@ -175,12 +77,16 @@ footer p {
     color: white;
     font-size: 1.5rem;
     transition: color 0.3s;
+    text-decoration: none;
 }
 
 .social-links a:hover {
     color: #60a5fa;
 }
 
+/* ==========================================================================
+   SECTION HERO (Commune)
+   ========================================================================== */
 .hero {
     padding: 4rem 2rem;
     display: flex;
@@ -201,11 +107,6 @@ footer p {
     height: 200%;
     background: radial-gradient(circle, rgba(30, 64, 175, 0.1) 0%, transparent 70%);
     animation: float 20s infinite linear;
-}
-
-@keyframes float {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .hero-content {
@@ -229,128 +130,275 @@ footer p {
 }
 
 .hero-btn {
+    display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: #1e40af;
-    color: white;
+    color: white !important;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 500;
     transition: background-color 0.3s;
+    cursor: pointer;
+    border: none;
 }
 
 .hero-btn:hover {
     background-color: #3b82f6;
 }
 
-@keyframes slideInFromTop {
-    0% { opacity: 0; transform: translateY(-50px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInFromBottom {
-    0% { opacity: 0; transform: translateY(50px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Styles pour la page Bilan*/
-
-.bilan-container {
-    max-width: 1000px;
+/* ==========================================================================
+   COMPOSANTS : CARTES DE PROJETS / FEATURES
+   ========================================================================== */
+.features {
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+.feature-card {
+    background-color: white;
     padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
     text-align: justify;
 }
 
-.bilan-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%);
-    border-radius: 15px;
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
 }
 
-.bilan-header h1 {
+.feature-icon {
+    font-size: 2rem;
     color: #1e40af;
-    font-size: 2.5rem;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
-.bilan-header p {
-    color: #4b5563;
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.bilan-section {
-    background: white;
-    margin-bottom: 2rem;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.bilan-section:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-}
-
-.bilan-section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.section-icon {
+.feature-card h3 {
     font-size: 1.5rem;
-}
-
-.bilan-section p {
-    color: #4b5563;
-    line-height: 1.8;
     margin-bottom: 1rem;
-    font-size: 1.1rem;
+    color: #1e3a8a;
 }
 
-.highlight-box {
-    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
-    padding: 1.5rem;
+.open-details-btn {
+    padding: 0.5rem 1rem;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   PAGE PROJET : MODALES
+   ========================================================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.modal-overlay.active { display: block; }
+
+.project-details {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
     border-radius: 10px;
-    border-left: 4px solid #3b82f6;
-    margin: 1.5rem 0;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 10000;
+    max-width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 700px;
 }
 
-.highlight-box p {
-    margin: 0;
-    font-weight: 500;
-    color: #1e40af;
+.project-details.active { display: block; }
+
+.close-details-btn {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: #f3f4f6;
+    border: none;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
+.project-content { display: flex; gap: 2rem; margin-top: 1rem; }
+.project-left, .project-right { flex: 1; }
+
+/* ==========================================================================
+   PAGE À PROPOS : PROFIL & PASSIONS
+   ========================================================================== */
+.profile-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+.profile-card {
+    background: white; border-radius: 20px; padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease-out;
 }
 
-.skill-item {
-    background: #f8fafc;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 2px solid #e2e8f0;
-    transition: all 0.3s ease;
+.profile-content { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+
+.profile-image {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: linear-gradient(135deg, #1e40af, #60a5fa);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; color: white; margin: 0 auto;
 }
 
-.skill-item:hover {
-    border-color: #3b82f6;
-    background: #eff6ff;
+.passions-section { padding: 4rem 2rem; background: #f8fafc; }
+.passions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+
+.passion-card {
+    background: white; border-radius: 20px; padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
 }
 
-.skill-item strong {
-    color: #1e40af;
+.passion-card:hover { transform: translateY(-10px); }
+
+/* Couleurs spécifiques passions */
+.basketball-card { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; }
+.cycling-card { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
+.gaming-card { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
+
+.passion-stats { display: flex; gap: 1.5rem; margin-top: 1rem; }
+.stat-number { font-size: 1.5rem; font-weight: bold; display: block; }
+
+/* ==========================================================================
+   PAGE CONTACT & CV
+   ========================================================================== */
+.main-content { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+.cv-section { background: white; border-radius: 10px; overflow: hidden; margin-bottom: 3rem; }
+.cv-header { background: #1e40af; color: white; padding: 2rem; text-align: center; position: relative; }
+
+.pdf-embed { width: 100%; height: 600px; border: none; }
+
+.info-item {
+    display: flex; align-items: center; margin-bottom: 1rem;
+    padding: 1rem; background: white; border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.info-icon { font-size: 1.5rem; margin-right: 1rem; color: #1e40af; }
+
+.availability {
+    padding: 1.5rem; background: #dcfce7; border-left: 4px solid #16a34a;
+    border-radius: 5px; margin-top: 2rem;
+}
+
+/* ==========================================================================
+   PAGE BILAN
+   ========================================================================== */
+.bilan-container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+.bilan-section { background: white; margin-bottom: 2rem; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.highlight-box { background: #eff6ff; padding: 1.5rem; border-left: 4px solid #3b82f6; margin: 1rem 0; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.skill-item { background: #f8fafc; padding: 1rem; border-radius: 8px; text-align: center; border: 1px solid #e2e8f0; }
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes float { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes slideInFromTop { 0% { opacity: 0; transform: translateY(-50px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes slideInFromBottom { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .profile-content { grid-template-columns: 1fr; text-align: center; }
+    .project-content { flex-direction: column; }
+    .hero h1 { font-size: 2.2rem; }
+}
+
+/* ==========================================================================
+   CORRECTIONS : ONGLETS & PAGE À PROPOS
+   ========================================================================== */
+
+/* 1. Design des Onglets (Tabs) pour Projets et Bilan */
+.tabs-container {
+    max-width: 1200px; margin: -2rem auto 2rem auto; padding: 0 2rem; position: relative; z-index: 10;
+}
+.tabs {
+    display: flex; justify-content: center; gap: 1rem; background: white; padding: 1rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); flex-wrap: wrap;
+}
+.tab-btn {
+    padding: 0.8rem 2rem; border: none; background: #f3f4f6; color: #4b5563; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+}
+.tab-btn:hover { background: #e0e7ff; color: #1e40af; }
+.tab-btn.active { background: #1e40af; color: white; box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3); }
+
+.tab-content { display: none; animation: fadeIn 0.5s ease-out; }
+.tab-content.active { display: block; }
+
+.coming-soon { text-align: center; padding: 6rem 2rem; background: white; border-radius: 15px; border: 2px dashed #cbd5e1; color: #64748b; max-width: 800px; margin: 2rem auto; }
+.coming-soon .icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 2. Restauration des images et animations des Passions (Page À propos) */
+.basketball-image { width: 100%; height: 200px; background: url('../documents/basketball.jpg') center/cover; border-radius: 10px; margin-bottom: 1.5rem; position: relative; }
+.basketball-court { position: absolute; top: 0; right: 0; width: 100px; height: 100px; opacity: 0.2; background: radial-gradient(circle at 50px 50px, transparent 20px, white 20px, white 22px, transparent 22px); }
+.basketball-animation { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: #8b4513; border-radius: 50%; border: 2px solid #654321; animation: bounce 2s infinite ease-in-out; cursor: pointer; }
+.basketball-animation::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 1px; background: #654321; box-shadow: 0 -8px 0 #654321, 0 8px 0 #654321, -8px 0 0 #654321, 8px 0 0 #654321; }
+
+.bike-image { width: 100%; height: 200px; background: url('../documents/velo.jpg') center/cover; border-radius: 10px; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+.bike-image::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: left 0.5s ease; }
+.cycling-card:hover .bike-image::before { left: 100%; }
+
+.gaming-setup { width: 100%; height: 200px; background: url('../documents/JeuxVideos.png') center/cover; border-radius: 10px; margin-bottom: 1.5rem; position: relative; }
+
+.passion-card h3 { font-size: 1.8rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.passion-card p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem; text-align: justify; }
+
+/* 3. Résolution du conflit pour la section "Valeurs" (Page À propos) */
+.skills-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+.skills-title { text-align: center; margin-bottom: 3rem; }
+.skills-title h2 { font-size: 2.5rem; color: #1e40af; margin-bottom: 1rem; }
+
+/* On cible spécifiquement la grille dans .skills-section pour ne pas casser la page Bilan */
+.skills-section .skills-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.skills-section .skill-item { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease; border: none; }
+.skills-section .skill-item:hover { transform: translateY(-5px); }
+.skill-icon { font-size: 3rem; margin-bottom: 1rem; }
+.skills-section .skill-item h4 { color: #1e40af; margin-bottom: 0.5rem; font-size: 1.2rem; }
+
+/* 4. Titre de la section Passions (Page À propos) */
+.passions-title { 
+    text-align: center; 
+    margin-bottom: 4rem; 
+}
+
+.passions-title h2 { 
+    font-size: 2.5rem; 
+    color: #1e40af; 
+    margin-bottom: 1rem; 
+}
+
+.passions-title p {
+    color: #4b5563;
+    font-size: 1.1rem;
 }
